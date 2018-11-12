@@ -20,6 +20,29 @@ p {
     text-decoration: none;
 }
 
+.current {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#date {
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+}
+
+#current-position-color {
+    background: rgba(255, 235, 235);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    text-align: center;
+    line-height: 200px;
+    margin-top: 20px;
+}
+
 .gradient {
     width: 100%;
     height: 25px;
@@ -36,7 +59,6 @@ p {
     font-size: 30px;
     text-align: center;
     line-height: 200px;
-    margin: 0 auto;
 }
 img {
     width: 100px;

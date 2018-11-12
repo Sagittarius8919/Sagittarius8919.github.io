@@ -5,6 +5,8 @@ let percent = 0;
 let interval = null;
 let intervalRepeat = null;
 const WHOLE_ITERATION = 255;
+const CURRENT_POSITION = 235;
+const START_DATE = '11.11.18';
 
 const circle = document.getElementById('circle');
 
@@ -38,4 +40,27 @@ title.addEventListener('click', function () {
         'style',
         'opacity: 0.2;'
     );
-})
+});
+
+(function getCurrentPosition() {
+    const start = parseInt(START_DATE, 10);
+    const now = parseInt(new Date().toLocaleDateString(), 10);
+    let duration = now - start;
+    let currGreen = CURRENT_POSITION - duration;
+    let currBlue = CURRENT_POSITION - duration;
+    const currentCircle = document.getElementById('current-position-color');
+    currentCircle.setAttribute(
+        'style',
+        `background: rgb(255, ${currGreen}, ${currBlue});`
+    );
+})();
+
+const todayTitle = document.getElementById('date');
+const date = document.createElement('DIV');
+const now = new Date().toLocaleDateString();
+date.innerText = now;
+date.setAttribute(
+    'style',
+    'text-align: center;'
+);
+todayTitle.appendChild(date);
