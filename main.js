@@ -70,10 +70,10 @@ function getTodaysDate() {
 
 (function getCurrentPosition() {
     let currGreen, currBlue, duration;
-    const firstDuration = DAYS_IN_MONTH - start.day;
-    const nextDuration = today.day;
     const start = JSON.parse(JSON.stringify(START_DATE));
     const today = getTodaysDate();
+    const firstDuration = DAYS_IN_MONTH - start.day;
+    const nextDuration = today.day;
     if (start.year === today.year) {
         if (start.month === today.month) {
             duration = today.day - start.day;
