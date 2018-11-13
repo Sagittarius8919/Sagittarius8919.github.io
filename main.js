@@ -6,7 +6,21 @@ let interval = null;
 let intervalRepeat = null;
 const WHOLE_ITERATION = 255;
 const CURRENT_POSITION = 235;
-const START_DATE = '11.11.18';
+const START_DATE = {
+    day: 11,
+    month: 11,
+    year: 2018,
+};
+const START_YEAR_DATE = {
+    day: 1,
+    month: 1,
+};
+const END_YEAR_DATE = {
+    day: 31,
+    month: 12,
+};
+const DAYS_IN_MONTH = 30;
+const DAYS_IN_YEAR = 365;
 
 const circle = document.getElementById('circle');
 
@@ -42,12 +56,45 @@ title.addEventListener('click', function () {
     );
 });
 
+function getTodaysDate() {
+    const now = new Date().toLocaleDateString();
+    const day = Number(now.slice(0, 2));
+    const month = Number(now.slice(3, 5));
+    const year = Number(now.slice(6));
+    return {
+        day,
+        month,
+        year,
+    };
+}
+
 (function getCurrentPosition() {
-    const start = parseInt(START_DATE, 10);
-    const now = parseInt(new Date().toLocaleDateString(), 10);
-    let duration = now - start;
-    let currGreen = CURRENT_POSITION - duration;
-    let currBlue = CURRENT_POSITION - duration;
+    let currGreen, currBlue, duration;
+    const firstDuration = DAYS_IN_MONTH - start.day;
+    const nextDuration = today.day;
+    const start = JSON.parse(JSON.stringify(START_DATE));
+    const today = getTodaysDate();
+    if (start.year === today.year) {
+        if (start.month === today.month) {
+            duration = today.day - start.day;
+        } else if (start.month < today.month) {
+            let numberOfFullMonths = today.month - start.month > 1 ? (today.month - start.month - 1) : 0;
+            duration = firstDuration + numberOfFullMonths * DAYS_IN_MONTH + nextDuration; 
+        }
+    } else if (start.year < today.year) {
+        if (START_YEAR_DATE.month === today.month) {
+            duration = today.day;
+        } else if (START_YEAR_DATE.month < today.month) {
+            let numberOfFullYears = today.year - start.year > 1 ? (today.month - start.month - 1) : 0;
+            let numberOfFullMonthsInPrevYear = END_YEAR_DATE.month - start.month;
+            let numberOfFullMonthsInCurrYear = today.month - START_YEAR_DATE.month;
+            const totalNumberOfFullMonths = numberOfFullMonthsInPrevYear + numberOfFullMonthsInCurrYear;
+            duration = firstDuration + numberOfFullYears * DAYS_IN_YEAR + totalNumberOfFullMonths * DAYS_IN_MONTH + nextDuration;
+        }
+    }
+
+    currGreen = CURRENT_POSITION - duration;
+    currBlue = CURRENT_POSITION - duration;
     const currentCircle = document.getElementById('current-position-color');
     currentCircle.setAttribute(
         'style',
