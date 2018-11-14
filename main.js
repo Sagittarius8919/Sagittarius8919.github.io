@@ -46,7 +46,7 @@ function gradient() {
     }
 }
 
-interval = setInterval(gradient, 1000);
+interval = setInterval(gradient, 500);
 
 function getTodaysDate() {
     const now = new Date().toLocaleDateString();
