@@ -46,15 +46,7 @@ function gradient() {
     }
 }
 
-interval = setInterval(gradient, 100);
-
-const title = document.getElementById('title');
-title.addEventListener('click', function () {
-    title.setAttribute(
-        'style',
-        'opacity: 0.2;'
-    );
-});
+interval = setInterval(gradient, 1000);
 
 function getTodaysDate() {
     const now = new Date().toLocaleDateString();
