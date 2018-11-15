@@ -32,7 +32,7 @@ function gradient() {
             blue = 255;
             percent = 0;
             clearInterval(interval);
-            interval = setInterval(gradient, 100);
+            interval = setInterval(gradient, 500);
         }, 10 * 1000)
     } else {
         percent = Math.floor(((WHOLE_ITERATION - green) / WHOLE_ITERATION) * 100);
