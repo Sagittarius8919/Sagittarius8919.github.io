@@ -49,10 +49,10 @@ function gradient() {
 interval = setInterval(gradient, 500);
 
 function getTodaysDate() {
-    const now = new Date().toLocaleDateString();
-    const day = Number(now.slice(0, 2));
-    const month = Number(now.slice(3, 5));
-    const year = Number(now.slice(6));
+    const now = new Date();
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
     return {
         day,
         month,
@@ -96,8 +96,8 @@ function getTodaysDate() {
 
 const todayTitle = document.getElementById('date');
 const date = document.createElement('DIV');
-const now = new Date().toLocaleDateString();
-date.innerText = now;
+const today = getTodaysDate();
+date.innerText = `${today.day}.${today.month}.${today.year}`;
 date.setAttribute(
     'style',
     'text-align: center;'
