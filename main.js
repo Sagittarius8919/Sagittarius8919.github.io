@@ -75,7 +75,8 @@ function getTodaysDate() {
         }
     } else if (start.year < today.year) {
         if (START_YEAR_DATE.month === today.month) {
-            duration = today.day;
+            let numberOfFullMonthsInPrevYear = END_YEAR_DATE.month - start.month;
+            duration = firstDuration + numberOfFullMonthsInPrevYear * DAYS_IN_MONTH + nextDuration;
         } else if (START_YEAR_DATE.month < today.month) {
             let numberOfFullYears = today.year - start.year > 1 ? (today.month - start.month - 1) : 0;
             let numberOfFullMonthsInPrevYear = END_YEAR_DATE.month - start.month;
