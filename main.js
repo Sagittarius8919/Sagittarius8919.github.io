@@ -25,7 +25,7 @@ const DAYS_IN_YEAR = 365;
 const circle = document.getElementById('circle');
 
 function gradient() {
-    if (red === 255 && green === 0, blue === 0) {
+    if (red === 255 && green === 0 && blue === 0) {
         clearInterval(interval);
         setTimeout(() => {
             green = 255;
